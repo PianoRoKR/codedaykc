@@ -179,38 +179,43 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int circular_progress_bar=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int actbg=0x7f020000;
+        public static final int circular_progress_bar=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int _time=0x7f0a000d;
-        public static final int action_settings=0x7f0a000e;
-        public static final int info=0x7f0a0008;
-        public static final int mphLabel=0x7f0a0005;
-        public static final int mphTV=0x7f0a0004;
-        public static final int mpmLabel=0x7f0a0003;
-        public static final int mpmSB=0x7f0a0000;
-        public static final int mpmValueTV=0x7f0a0001;
-        public static final int pause=0x7f0a0006;
-        public static final int seekBar1=0x7f0a0007;
-        public static final int skip=0x7f0a000a;
-        public static final int startWorkoutBtn=0x7f0a0002;
-        public static final int stop=0x7f0a0009;
-        public static final int textView1=0x7f0a000b;
-        public static final int textView2=0x7f0a000c;
+        public static final int RelativeLayout1=0x7f0a0000;
+        public static final int _time=0x7f0a000f;
+        public static final int action_settings=0x7f0a0010;
+        public static final int info=0x7f0a000a;
+        public static final int loadingBar=0x7f0a0007;
+        public static final int mphLabel=0x7f0a0006;
+        public static final int mphTV=0x7f0a0005;
+        public static final int mpmLabel=0x7f0a0004;
+        public static final int mpmSB=0x7f0a0001;
+        public static final int mpmValueTV=0x7f0a0002;
+        public static final int pause=0x7f0a0008;
+        public static final int seekBar1=0x7f0a0009;
+        public static final int skip=0x7f0a000c;
+        public static final int startWorkoutBtn=0x7f0a0003;
+        public static final int stop=0x7f0a000b;
+        public static final int textView1=0x7f0a000d;
+        public static final int textView2=0x7f0a000e;
     }
     public static final class integer {
         public static final int sbMax=0x7f060000;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int activity_splash=0x7f030001;
-        public static final int activity_workout=0x7f030002;
+        public static final int activity_analyze_music=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int activity_splash=0x7f030002;
+        public static final int activity_workout=0x7f030003;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
-        public static final int splash=0x7f090001;
-        public static final int workout=0x7f090002;
+        public static final int analyze_music=0x7f090000;
+        public static final int main=0x7f090001;
+        public static final int splash=0x7f090002;
+        public static final int workout=0x7f090003;
     }
     public static final class string {
         public static final int action_settings=0x7f070001;
@@ -226,6 +231,7 @@ public final class R {
         public static final int pause=0x7f070005;
         public static final int startWorkoutBtnTV=0x7f070009;
         public static final int stop=0x7f070007;
+        public static final int title_activity_analyze_music=0x7f07000f;
         public static final int title_activity_splash=0x7f07000e;
         public static final int title_activity_workout=0x7f070003;
     }

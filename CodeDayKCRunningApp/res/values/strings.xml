@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">CodeDayKCRunningApp</string>
+    <string name="app_name">CodeDay KC Running App</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_workout">Workout</string>
@@ -16,5 +16,6 @@
     <string name="mphTV">6.40</string>
     <string name="mphLabel">MPH</string>
     <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_analyze_music">AnalyzeMusic</string>
 
 </resources>

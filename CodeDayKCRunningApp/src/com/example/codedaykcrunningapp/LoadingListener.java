@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 public class LoadingListener extends AsyncTask<String, Integer, Integer> {
 	
 	public interface LoadingTaskListener {
-		
+		void onTaskFinished(); // If you want to pass something back to the listener add a param to this method
 	}
 	
 	// This is the progress bar you want to update while the task is in progress
@@ -65,6 +65,6 @@ public class LoadingListener extends AsyncTask<String, Integer, Integer> {
     @Override
     protected void onPostExecute(Integer result) {
         super.onPostExecute(result);
-        //finishedListener.onTaskFinished(); // Tell whoever was listening we have finished
+        finishedListener.onTaskFinished(); // Tell whoever was listening we have finished
     }
 }

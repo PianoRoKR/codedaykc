@@ -16,7 +16,6 @@
         <activity
             android:name="com.example.codedaykcrunningapp.MainActivity"
             android:label="@string/app_name" >
-            
         </activity>
         <activity
             android:name="com.example.codedaykcrunningapp.Workout"
@@ -30,13 +29,18 @@
 
         <activity
             android:name="com.example.codedaykcrunningapp.Splash"
-            android:label="@string/title_activity_splash" 
-			android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:label="@string/title_activity_splash"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.codedaykcrunningapp.AnalyzeMusic"
+            android:label="@string/title_activity_analyze_music"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
     </application>
 
