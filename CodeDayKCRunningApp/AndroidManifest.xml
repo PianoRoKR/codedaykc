@@ -26,6 +26,7 @@
             android:name="com.example.codedaykcrunningapp.Workout"
             android:label="@string/title_activity_workout" >
         </activity>
+        <receiver android:label="@string/app_name" android:name="Widget"></receiver>
     </application>
 
 </manifest>
