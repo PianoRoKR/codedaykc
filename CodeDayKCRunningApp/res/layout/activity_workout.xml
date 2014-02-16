@@ -2,19 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/actbg"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Workout" >
-
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@null"
-        android:src="@drawable/pause" />
 
     <TextView
         android:id="@+id/mpmLabel"
@@ -22,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/mpmValueTV"
         android:layout_toLeftOf="@+id/mphLabel"
-        android:text="@string/mpmLabel" />
+        android:text="@string/mpmLabel"
+        android:textColor="@color/WhiteSmoke" />
 
     <TextView
         android:id="@+id/mpmValueTV"
@@ -32,7 +26,8 @@
         android:layout_below="@+id/seekBar1"
         android:layout_marginLeft="21dp"
         android:text="@string/mpmValueTV"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/WhiteSmoke" />
 
     <SeekBar
         android:id="@+id/seekBar1"
@@ -53,6 +48,7 @@
         android:layout_centerHorizontal="true"
         android:text="00:00"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/WhiteSmoke"
         android:textSize="64px" />
 
     <TextView
@@ -64,7 +60,8 @@
         android:layout_marginRight="18dp"
         android:layout_marginTop="26dp"
         android:text="@string/mphTV"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/WhiteSmoke" />
 
     <TextView
         android:id="@+id/mphLabel"
@@ -73,6 +70,25 @@
         android:layout_alignTop="@+id/mphTV"
         android:layout_centerHorizontal="true"
         android:text="@string/mphLabel"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/WhiteSmoke" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/imageButton2"
+        android:layout_below="@+id/mpmLabel"
+        android:background="@null"
+        android:src="@drawable/pause" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:src="@drawable/stop_small" />
 
 </RelativeLayout>

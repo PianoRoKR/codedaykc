@@ -99,6 +99,7 @@ public class Workout extends Activity {
 
 	// Create Media Player
 	MediaPlayer mediaPlayer = new MediaPlayer();
+	ImageButton stop = (ImageButton) findViewById(R.id.imageButton2);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -108,11 +109,14 @@ public class Workout extends Activity {
 		time = (TextView) findViewById(R.id._time);
 
 		ImageButton b = (ImageButton) findViewById(R.id.imageButton1);
+
 		starttime = System.currentTimeMillis();
 		timer = new Timer();
 		timer.schedule(new firstTask(), 0, 500);
 		timer.schedule(new secondTask(), 0, 500);
 		h2.postDelayed(run, 0);
+
+		stop.setVisibility(0);
 
 		// Get URI from the song list
 		Uri myUri = Uri.parse(songsList.get(1)[2]);
@@ -127,6 +131,13 @@ public class Workout extends Activity {
 		}
 
 		mediaPlayer.start();
+
+		stop.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				stop();
+			}
+		});
 
 		b.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -152,10 +163,13 @@ public class Workout extends Activity {
 				} else if (!paused) {
 					mediaPlayer.pause();
 				} else {
+					stop.setVisibility(0);
 					mediaPlayer.start();
 				}
 
 				if (!paused) {
+					stop.setVisibility(1);
+
 					timer.cancel();
 					timer.purge();
 					h2.removeCallbacks(run);
@@ -222,5 +236,9 @@ public class Workout extends Activity {
 
 			}
 		});
+	}
+
+	private void stop() {
+		return;
 	}
 }
