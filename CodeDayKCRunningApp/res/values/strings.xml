@@ -10,5 +10,11 @@
     <string name="next">Next</string>
     <string name="stop">Stop</string>
     <string name="info">Info</string>
+    
+    <string name="startWorkoutBtnTV">Start Running!</string>
+    <string name="mpmValueTV">9:00</string>
+    <string name="mpmLabel">Minutes Per Mile</string>
+    <string name="mphTV">6.40</string>
+    <string name="mphLabel">MPH</string>
 
 </resources>

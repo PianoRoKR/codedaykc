@@ -8,15 +8,63 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/start_button"
-        style="@style/AppBaseTheme"
+    <SeekBar
+        android:id="@+id/mpmSB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="143dp"
+        android:max="@integer/sbMax"
+        android:progress="20" />
+
+    <TextView
+        android:id="@+id/mpmValueTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/startWorkoutBtn"
+        android:layout_alignLeft="@+id/mpmSB"
+        android:layout_marginBottom="25dp"
+        android:text="@string/mpmValueTV"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/mpmLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/mpmValueTV"
+        android:layout_alignBottom="@+id/mpmValueTV"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/mpmValueTV"
+        android:text="@string/mpmLabel" />
+
+    <Button
+        android:id="@+id/startWorkoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="131dp"
-        android:onClick="startWorkout"
-        android:text="Start" />
+        android:layout_marginBottom="53dp"
+        android:text="@string/startWorkoutBtnTV" />
+
+    <TextView
+        android:id="@+id/mphTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/mpmSB"
+        android:layout_alignLeft="@+id/startWorkoutBtn"
+        android:layout_marginBottom="46dp"
+        android:text="@string/mphTV"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/mphLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/mphTV"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/mphTV"
+        android:text="@string/mphLabel"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

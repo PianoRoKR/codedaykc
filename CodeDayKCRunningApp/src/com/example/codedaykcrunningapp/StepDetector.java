@@ -38,55 +38,50 @@ public class StepDetector implements SensorEventListener
         mStepListeners.add(sl);
     }
     
-    //public void onSensorChanged(int sensor, float[] values) {
-    @SuppressWarnings("deprecation")
 	public void onSensorChanged(SensorEvent event) {
         Sensor sensor = event.sensor; 
         synchronized (this) {
-            if (sensor.getType() == Sensor.TYPE_ORIENTATION) {
-            }
-            else {
-                if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-                    float vSum = 0;
-                    for (int i=0 ; i<3 ; i++) {
-                        final float v = mYOffset + event.values[i] * mScale[1];
-                        vSum += v;
-                    }
-                    float v = vSum / 3;
-                    
-                    float direction = (v > mLastValues ? 1 : (v < mLastValues ? -1 : 0));
-                    if (direction == - mLastDirections) {
-                    	
-                        // Direction changed
-                        int extType = (direction > 0 ? 0 : 1); // minumum or maximum?
-                        mLastExtremes[extType] = mLastValues;
-                        float diff = Math.abs(mLastExtremes[extType] - mLastExtremes[1 - extType]);
-
-                        if (diff > mLimit) {
-                            
-                            boolean isAlmostAsLargeAsPrevious = diff > (mLastDiff * (2/3));
-                            boolean isPreviousLargeEnough = mLastDiff > (diff/3);
-                            boolean isNotContra = (mLastMatch != 1 - extType);
-                            
-                            // Log step and call listeners
-                            if (isAlmostAsLargeAsPrevious && isPreviousLargeEnough && isNotContra) {
-                                Log.i(TAG, "step");
-                                for (StepListener stepListener : mStepListeners) {
-                                    stepListener.onStep();
-                                }
-                                mLastMatch = extType;
-                            }
-                            else {
-                                mLastMatch = -1;
-                            }
-                        }
-                        // Set last difference
-                        mLastDiff = diff;
-                    }
-                    mLastDirections = direction;
-                    mLastValues = v;
+            if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                float vSum = 0;
+                for (int i=0 ; i<3 ; i++) {
+                    final float v = mYOffset + event.values[i] * mScale[1];
+                    vSum += v;
                 }
+                float v = vSum / 3;
+                
+                float direction = (v > mLastValues ? 1 : (v < mLastValues ? -1 : 0));
+                if (direction == - mLastDirections) {
+                	
+                    // Direction changed
+                    int extType = (direction > 0 ? 0 : 1); // minumum or maximum?
+                    mLastExtremes[extType] = mLastValues;
+                    float diff = Math.abs(mLastExtremes[extType] - mLastExtremes[1 - extType]);
+
+                    if (diff > mLimit) {
+                        
+                        boolean isAlmostAsLargeAsPrevious = diff > (mLastDiff * (2/3));
+                        boolean isPreviousLargeEnough = mLastDiff > (diff/3);
+                        boolean isNotContra = (mLastMatch != 1 - extType);
+                        
+                        // Log step and call listeners
+                        if (isAlmostAsLargeAsPrevious && isPreviousLargeEnough && isNotContra) {
+                            Log.i(TAG, "step");
+                            for (StepListener stepListener : mStepListeners) {
+                                stepListener.onStep();
+                            }
+                            mLastMatch = extType;
+                        }
+                        else {
+                            mLastMatch = -1;
+                        }
+                    }
+                    // Set last difference
+                    mLastDiff = diff;
+                }
+                mLastDirections = direction;
+                mLastValues = v;
             }
+            
         }
     }
     
