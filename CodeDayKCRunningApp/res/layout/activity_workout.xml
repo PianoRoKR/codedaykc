@@ -8,54 +8,71 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Workout" >
 
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:src="@drawable/pause" />
+
+    <TextView
+        android:id="@+id/mpmLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/mpmValueTV"
+        android:layout_toLeftOf="@+id/mphLabel"
+        android:text="@string/mpmLabel" />
+
+    <TextView
+        android:id="@+id/mpmValueTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mphLabel"
+        android:layout_below="@+id/seekBar1"
+        android:layout_marginLeft="21dp"
+        android:text="@string/mpmValueTV"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <SeekBar
         android:id="@+id/seekBar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="20dp"
+        android:layout_alignLeft="@+id/imageButton1"
+        android:layout_below="@+id/mphLabel"
         android:contentDescription="Minute per Mile"
         android:indeterminate="false"
         android:max="15"
         android:progress="12" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/seekBar1"
-        android:layout_marginLeft="20dp"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/pause" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/seekBar1"
-        android:layout_below="@+id/_time"
-        android:layout_marginTop="38dp"
-        android:text="Minutes per Mile"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
         android:text="00:00"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="64px" />
+
+    <TextView
+        android:id="@+id/mphTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/mpmLabel"
+        android:layout_below="@+id/_time"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="26dp"
+        android:text="@string/mphTV"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/mphLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/mphTV"
+        android:layout_centerHorizontal="true"
+        android:text="@string/mphLabel"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

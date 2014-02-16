@@ -1,13 +1,20 @@
 package com.example.codedaykcrunningapp;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -16,7 +23,6 @@ import android.widget.TextView;
 
 public class Workout extends Activity {
 	class firstTask extends TimerTask {
-
 		@Override
 		public void run() {
 			h.sendEmptyMessage(0);
@@ -82,6 +88,17 @@ public class Workout extends Activity {
 	Timer timer = new Timer();
 
 	private boolean paused = false;
+	private final String mpmKey = "mpm";
+	private final String mphKey = "mph";
+	private float mpmValue;
+	private float mphValue;
+	private final float minValue = 4.00f;
+	private final float maxValue = 20.00f;
+
+	public List<String[]> songsList = new ArrayList<String[]>();
+
+	// Create Media Player
+	MediaPlayer mediaPlayer = new MediaPlayer();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -96,17 +113,55 @@ public class Workout extends Activity {
 		timer.schedule(new firstTask(), 0, 500);
 		timer.schedule(new secondTask(), 0, 500);
 		h2.postDelayed(run, 0);
+
+		// Get URI from the song list
+		Uri myUri = Uri.parse(songsList.get(1)[2]);
+
+		try {
+			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+			mediaPlayer.setDataSource(getApplicationContext(), myUri);
+			mediaPlayer.prepare();
+			mediaPlayer.start();
+		} catch (Exception e) {
+			Log.w("Song Player", "Failed to play song");
+		}
+
+		mediaPlayer.start();
+
 		b.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				ImageButton b = (ImageButton) v;
+
+				if (!paused && !mediaPlayer.isPlaying()) {
+					// Get URI from the song list
+					Uri myUri = Uri.parse(songsList.get(1)[2]);
+
+					try {
+						mediaPlayer
+								.setAudioStreamType(AudioManager.STREAM_MUSIC);
+						mediaPlayer.setDataSource(getApplicationContext(),
+								myUri);
+						mediaPlayer.prepare();
+						mediaPlayer.start();
+					} catch (Exception e) {
+						Log.w("Song Player", "Failed to play song");
+					}
+
+					mediaPlayer.start();
+				} else if (!paused) {
+					mediaPlayer.pause();
+				} else {
+					mediaPlayer.start();
+				}
+
 				if (!paused) {
 					timer.cancel();
 					timer.purge();
 					h2.removeCallbacks(run);
-					offset = System.currentTimeMillis() - starttime;
 					b.setImageResource(R.drawable.play);
 				} else {
+					offset = System.currentTimeMillis() - starttime;
 					starttime = System.currentTimeMillis();
 					timer = new Timer();
 					timer.schedule(new firstTask(), 0, 500);
@@ -119,16 +174,33 @@ public class Workout extends Activity {
 		});
 
 		seekbar = (SeekBar) findViewById(R.id.seekBar1);
-		minutes = (TextView) findViewById(R.id.textView2);
-		minutes.setText(String.valueOf(seekbar.getProgress() + " minute miles"));
+		final TextView mpmValueTV = (TextView) findViewById(R.id.mpmValueTV);
+		final TextView mphValueTV = (TextView) findViewById(R.id.mphTV);
 		seekbar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			@Override
-			public void onProgressChanged(SeekBar seekBar, int progressValue,
+			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
-				int y = seekbar.getProgress();
 
-				minutes.setText(String.valueOf(y) + " minute miles");
+				float prog = Float.parseFloat(String.valueOf(progress)) / 64;
+				mpmValue = minValue + (maxValue - minValue) * prog;
 
+				setMph(mpmValue);
+
+				String hrStr, minStr;
+				int hours, mins;
+				hours = (int) mpmValue;
+				hrStr = String.valueOf(hours);
+				hrStr += ":";
+				mpmValue = (mpmValue - hours) * 60;
+				mins = (int) mpmValue;
+
+				// Account for 0 as integer (add another 0)
+				if (String.valueOf(mins).length() == 1)
+					minStr = "0" + String.valueOf(mins);
+				else
+					minStr = String.valueOf(mins);
+
+				mpmValueTV.setText(hrStr + minStr);
 			}
 
 			@Override
@@ -137,6 +209,17 @@ public class Workout extends Activity {
 
 			@Override
 			public void onStopTrackingTouch(SeekBar arg0) {
+			}
+
+			private void setMph(float val) {
+
+				if (val == 0) {
+					mphValueTV.setText("0.0");
+					return;
+				}
+				mphValue = 1 / val * 60;
+				mphValueTV.setText(new DecimalFormat("#.00").format(mphValue));
+
 			}
 		});
 	}

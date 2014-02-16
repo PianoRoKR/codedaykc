@@ -45,6 +45,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="53dp"
+        android:onClick="startWorkout"
         android:text="@string/startWorkoutBtnTV" />
 
     <TextView
