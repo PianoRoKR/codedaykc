@@ -2,11 +2,13 @@ package com.example.codedaykcrunningapp;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -20,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Workout extends Activity {
 	class firstTask extends TimerTask {
@@ -94,17 +97,39 @@ public class Workout extends Activity {
 	private float mphValue;
 	private final float minValue = 4.00f;
 	private final float maxValue = 20.00f;
+	private Cursor results;
+	private final SongBase sb = new SongBase(this);
 
-	public List<String[]> songsList = new ArrayList<String[]>();
+	public List<String> songsList = new ArrayList<String>(); // URI of song
 
 	// Create Media Player
 	MediaPlayer mediaPlayer = new MediaPlayer();
 	ImageButton stop = (ImageButton) findViewById(R.id.imageButton2);
 
+	private int n = 0;
+
+	private void fetchSongs(int bpm) {
+
+		results = sb.getAllRecords(bpm);
+		if (results.moveToFirst()) {
+			while (results.moveToNext()) {
+				songsList.add(results.getString(0));
+			}
+			Collections.shuffle(songsList);
+		} else {
+			Toast.makeText(this, "You don't have any music!", 1000000);
+			return;
+		}
+
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_workout);
+
+		int bpm = savedInstanceState.getInt("bpm");
+		fetchSongs(bpm);
 
 		time = (TextView) findViewById(R.id._time);
 
@@ -119,7 +144,7 @@ public class Workout extends Activity {
 		stop.setVisibility(0);
 
 		// Get URI from the song list
-		Uri myUri = Uri.parse(songsList.get(1)[2]);
+		Uri myUri = Uri.parse(songsList.get(n));
 
 		try {
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -146,7 +171,8 @@ public class Workout extends Activity {
 
 				if (!paused && !mediaPlayer.isPlaying()) {
 					// Get URI from the song list
-					Uri myUri = Uri.parse(songsList.get(1)[2]);
+					n++;
+					Uri myUri = Uri.parse(songsList.get(n));
 
 					try {
 						mediaPlayer
@@ -158,8 +184,6 @@ public class Workout extends Activity {
 					} catch (Exception e) {
 						Log.w("Song Player", "Failed to play song");
 					}
-
-					mediaPlayer.start();
 				} else if (!paused) {
 					mediaPlayer.pause();
 				} else {
@@ -215,6 +239,7 @@ public class Workout extends Activity {
 					minStr = String.valueOf(mins);
 
 				mpmValueTV.setText(hrStr + minStr);
+				// fetchSongs(bpm); // need to implement
 			}
 
 			@Override
