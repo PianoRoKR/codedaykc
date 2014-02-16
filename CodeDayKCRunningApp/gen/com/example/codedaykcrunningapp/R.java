@@ -204,11 +204,13 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int activity_workout=0x7f030001;
+        public static final int activity_splash=0x7f030001;
+        public static final int activity_workout=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f090000;
-        public static final int workout=0x7f090001;
+        public static final int splash=0x7f090001;
+        public static final int workout=0x7f090002;
     }
     public static final class string {
         public static final int action_settings=0x7f070001;
@@ -224,6 +226,7 @@ public final class R {
         public static final int pause=0x7f070005;
         public static final int startWorkoutBtnTV=0x7f070009;
         public static final int stop=0x7f070007;
+        public static final int title_activity_splash=0x7f07000e;
         public static final int title_activity_workout=0x7f070003;
     }
     public static final class style {
