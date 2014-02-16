@@ -8,59 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Workout" >
 
-    <Button
-        android:id="@+id/pause"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/seekBar1"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="28dp"
-        android:text="@string/pause" />
-
-    <Button
-        android:id="@+id/info"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/stop"
-        android:layout_alignBottom="@+id/stop"
-        android:layout_alignRight="@+id/seekBar1"
-        android:layout_marginRight="18dp"
-        android:text="Info" />
-
-    <Button
-        android:id="@+id/skip"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/pause"
-        android:layout_alignBottom="@+id/pause"
-        android:layout_alignRight="@+id/textView1"
-        android:text="Skip" />
-
-    <Button
-        android:id="@+id/stop"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/skip"
-        android:layout_alignBottom="@+id/skip"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/skip"
-        android:text="Stop" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="145dp"
-        android:text="Minutes per Mile"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <SeekBar
         android:id="@+id/seekBar1"
         android:layout_width="match_parent"
@@ -83,12 +30,31 @@
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/pause" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/seekBar1"
+        android:layout_below="@+id/_time"
+        android:layout_marginTop="38dp"
+        android:text="Minutes per Mile"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <TextView
         android:id="@+id/_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_marginTop="15dp"
         android:text="00:00"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -47,7 +47,7 @@ public class Workout extends Activity {
 	final Handler h = new Handler(new Callback() {
 		@Override
 		public boolean handleMessage(Message msg) {
-			long millis = System.currentTimeMillis() - starttime;
+			long millis = System.currentTimeMillis() - starttime + offset;
 			int seconds = (int) (millis / 1000);
 			int minutes = seconds / 60;
 			seconds = seconds % 60;
@@ -60,14 +60,15 @@ public class Workout extends Activity {
 	private SeekBar seekbar;
 	private TextView minutes;
 	private long starttime = 0;
+	private long offset = 0;
 
-	Handler h2 = new Handler();;
+	Handler h2 = new Handler();
 
 	Runnable run = new Runnable() {
 
 		@Override
 		public void run() {
-			long millis = System.currentTimeMillis() - starttime;
+			long millis = System.currentTimeMillis() - starttime + offset;
 			int seconds = (int) (millis / 1000);
 			int minutes = seconds / 60;
 			seconds = seconds % 60;
@@ -80,6 +81,8 @@ public class Workout extends Activity {
 
 	Timer timer = new Timer();
 
+	private boolean paused = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,30 +90,31 @@ public class Workout extends Activity {
 
 		time = (TextView) findViewById(R.id._time);
 
-		Button b = (Button) findViewById(R.id.pause);
+		ImageButton b = (ImageButton) findViewById(R.id.imageButton1);
 		starttime = System.currentTimeMillis();
 		timer = new Timer();
 		timer.schedule(new firstTask(), 0, 500);
 		timer.schedule(new secondTask(), 0, 500);
 		h2.postDelayed(run, 0);
-		b.setText("stop");
 		b.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Button b = (Button) v;
-				if (b.getText().equals("stop")) {
+				ImageButton b = (ImageButton) v;
+				if (!paused) {
 					timer.cancel();
 					timer.purge();
 					h2.removeCallbacks(run);
-					b.setText("start");
+					offset = System.currentTimeMillis() - starttime;
+					b.setImageResource(R.drawable.play);
 				} else {
 					starttime = System.currentTimeMillis();
 					timer = new Timer();
 					timer.schedule(new firstTask(), 0, 500);
 					timer.schedule(new secondTask(), 0, 500);
 					h2.postDelayed(run, 0);
-					b.setText("stop");
+					b.setImageResource(R.drawable.pause);
 				}
+				paused = !paused;
 			}
 		});
 
