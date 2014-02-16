@@ -2,26 +2,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/actbg"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
+    <SeekBar
+        android:id="@+id/mpmSB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="143dp"
+        android:max="@integer/sbMax"
+        android:progress="20" />
+
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/mpmLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignBaseline="@+id/mpmValueTV"
+        android:layout_alignBottom="@+id/mpmValueTV"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/mpmValueTV"
+        android:text="@string/mpmLabel" />
+
+    <TextView
+        android:id="@+id/mphTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/mpmSB"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp"
+        android:text="@string/mphTV"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/mphLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/mphTV"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/mphTV"
+        android:text="@string/mphLabel"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
-        android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
+        android:id="@+id/startWorkoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="30dp"
-        android:text="Button" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:onClick="startWorkout"
+        android:text="@string/startWorkoutBtnTV" />
+
+    <TextView
+        android:id="@+id/mpmValueTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/startWorkoutBtn"
+        android:layout_alignLeft="@+id/mpmSB"
+        android:layout_marginBottom="40dp"
+        android:text="@string/mpmValueTV"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+        <Spinner
+            android:id="@+id/feetSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/mpmSB"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/mpmSB"
+            android:layout_marginTop="26dp"
+            android:entries="@array/feet_array"
+            android:prompt="@string/spinner_feet" />
+
+    <Spinner
+        android:id="@+id/inchesSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/feetSpinner"
+        android:layout_below="@+id/feetSpinner"
+        android:entries="@array/inch_array"
+        android:prompt="@string/spinner_inches" />
 
 </RelativeLayout>
