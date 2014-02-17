@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void startWorkout(View view) {
-		Intent i = new Intent(getApplicationContext(), Workout.class);
+		Intent i = new Intent(this, Workout.class);
 		startActivity(i);
 	}
 
